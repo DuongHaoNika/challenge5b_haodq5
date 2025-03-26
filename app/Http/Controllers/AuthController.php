@@ -8,17 +8,9 @@ use Illuminate\Support\Facades\Hash;
 use App\Models\User;
 use Illuminate\Support\Facades\Validator;
 
-class UserController extends Controller
+class AuthController extends Controller
 {
-    public function index(){
-        return view('index');
-    }
-
-    public function profile() {
-        return view('profile');
-    }
-
-    public function view_login() {
+    public function index() {
         return view('login');
     }
 
@@ -50,7 +42,7 @@ class UserController extends Controller
         $remember = $request->has('remember');
         if (Auth::attempt(['username' => $request->username, 'password' => $request->password], $remember)) {
             // Authentication passed
-            return redirect()->intended('/');
+            return redirect()->intended('/dashboard');
         }
 
         // If authentication fails
