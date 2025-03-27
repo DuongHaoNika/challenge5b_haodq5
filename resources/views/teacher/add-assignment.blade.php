@@ -5,15 +5,17 @@
 
     <!-- Edit Form -->
     <section class="edit-form">
-        <form>
+        <form method="POST" action="{{ route('teacher.add.assignment') }}" enctype="multipart/form-data">
+            @csrf
+            
             <div class="form-group">
                 <label for="title"><strong>Tiêu đề:</strong></label>
-                <input type="text" id="title" class="form-control" value="Thi giữa kỳ">
+                <input name="title" type="text" id="title" class="form-control" required>
             </div>
             
             <div class="form-group">
                 <label for="description"><strong>Mô tả:</strong></label>
-                <textarea id="description" class="form-control" rows="3">20% điểm thành phần</textarea>
+                <textarea name="description" id="description" class="form-control" rows="3" required></textarea>
             </div>
             
             <div class="divider"></div>
@@ -21,20 +23,20 @@
             <div class="form-group">
                 <label for="deadline"><strong>Deadline:</strong></label>
                 <div class="datetime-input">
-                    <input type="date" id="deadline-date" class="form-control" value="2025-04-05">
-                    <input type="time" id="deadline-time" class="form-control" value="16:37">
-                    <select class="form-control ampm-select">
-                        <option>AM</option>
-                        <option selected>PM</option>
+                    <input type="date" name="deadline_date" id="deadline-date" class="form-control" required>
+                    <input type="time" name="deadline_time" id="deadline-time" class="form-control" required>
+                    <select name="ampm" class="form-control ampm-select" required>
+                        <option value="AM">AM</option>
+                        <option value="PM" selected>PM</option>
                     </select>
                 </div>
             </div>
             
             <div class="form-group">
-                <label><strong>File:</strong></label>
+                <label><strong>File đính kèm:</strong></label>
                 <div class="file-upload">
                     <label class="file-upload-btn">
-                        <input type="file" style="display: none;">
+                        <input type="file" name="file" id="file-input" style="display: none;">
                         <span class="file-upload-text">Choose File</span>
                         <span class="file-upload-filename">No file chosen</span>
                     </label>
@@ -43,9 +45,17 @@
             
             <div class="form-actions">
                 <button type="submit" class="submit-btn">
-                    Cập nhật bài tập
+                    Tạo bài tập
                 </button>
             </div>
         </form>
+        
+        <script>
+        // Hiển thị tên file khi chọn
+        document.getElementById('file-input').addEventListener('change', function(e) {
+            const fileName = e.target.files[0] ? e.target.files[0].name : 'No file chosen';
+            document.querySelector('.file-upload-filename').textContent = fileName;
+        });
+        </script>
     </section>
 </x-layout>

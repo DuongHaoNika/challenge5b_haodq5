@@ -11,7 +11,8 @@ class Assignment extends Model
         'title',
         'description',
         'file_path',
-        'deadline'
+        'deadline',
+        'teacher_id'
     ];
 
     use HasFactory;

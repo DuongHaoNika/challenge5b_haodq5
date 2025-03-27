@@ -14,16 +14,10 @@
                     <h3>Quản lý SV</h3>
                 </div>
             </a>
-            <a href="/manage/submissions">
-                <div class="tool-card">
-                    <i class="fas fa-file-alt"></i>
-                    <h3>Xem bài làm</h3>
-                </div>
-            </a>
             <a href="/manage/challenges">
                 <div class="tool-card">
                     <i class="fas fa-trophy"></i>
-                    <h3>Tạo Challenge</h3>
+                    <h3>Challenges</h3>
                 </div>
             </a>
         </div>

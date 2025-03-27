@@ -1,42 +1,40 @@
 <x-layout>
-    <header class="header">
-        <h1>Bài làm của sinh viên</h1>
-    </header>
-
-    <!-- Filter Section -->
-    <section class="filter-section">
-        <div class="filter-controls">
-            <div class="filter-group">
-                <label for="assignment-select">Chọn bài tập:</label>
-                <select id="assignment-select" class="form-select">
-                    <option>Bài tập 1</option>
-                    <option>Bài tập 2</option>
-                    <option>Thi giữa kỳ</option>
-                </select>
-            </div>
-            <button class="filter-btn">
-                <i class="fas fa-filter"></i> Lọc
-            </button>
-        </div>
-        <div class="divider"></div>
-    </section>
-
-    <!-- Submission Detail -->
-    <section class="submission-detail">
-        <div class="student-info">
-            <p><strong>Student:</strong> Dương Quang Hào</p>
-            <p><strong>Submitted At:</strong> 2025-03-23 23:55:54</p>
-        </div>
+    <h2>Danh sách sinh viên đã nộp bài: {{ $assignment->title }}</h2>
+    
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>STT</th>
+                    <th>Tên sinh viên</th>
+                    <th>Email</th>
+                    <th>Thời gian nộp</th>
+                    <th>File nộp</th>
+                    <th>Hành động</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach($submissions as $index => $submission)
+                <tr>
+                    <td>{{ $index + 1 }}</td>
+                    <td>{{ $submission->student->full_name }}</td>
+                    <td>{{ $submission->student->email }}</td>
+                    <td>{{ $submission->submitted_at->format('d/m/Y H:i') }}</td>
+                    <td>
+                        <a href="{{ Storage::url($submission->file_path) }}" target="_blank">
+                            Xem file
+                        </a>
+                    </td>
+                    <td>
+                        <a href="#" class="btn btn-sm btn-info">Chấm điểm</a>
+                    </td>
+                </tr>
+                @endforeach
+            </tbody>
+        </table>
         
-        <!-- File submission would go here -->
-        <div class="submission-content">
-            <p>Nội dung bài làm sẽ hiển thị ở đây...</p>
-        </div>
-        
-        <div class="submission-actions">
-            <button class="reupload-btn">
-                <i class="fas fa-upload"></i> Tải lại bài làm
-            </button>
-        </div>
-    </section>
+        @if($submissions->isEmpty())
+        <div class="alert alert-info">Chưa có sinh viên nào nộp bài.</div>
+        @endif
+    </div>
 </x-layout>

@@ -2,10 +2,6 @@
     <header class="header">
         <h1>Challenges</h1>
         <div class="header-actions">
-            <div class="search-box">
-                <input type="text" placeholder="Tìm kiếm challenge...">
-                <button><i class="fas fa-search"></i></button>
-            </div>
             <a href="/manage/add-challenge">
                 <button class="add-student-btn">
                     <i class="fas fa-plus"></i> Thêm Challenge
@@ -24,41 +20,24 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>1</td>
-                    <td>/test/com</td>
-                    <td><a href="#" class="profile-link">Xem</a></td>
-                    <td>
-                        <div class="action-buttons">
-                            <a href="/manage/edit-challenge">
-                                <button class="small-btn edit-btn">Sửa</button>
-                            </a>
-                            <button class="small-btn delete-btn">Xóa</button>
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>/test/com</td>
-                    <td><a href="#" class="profile-link">Xem</a></td>
-                    <td>
-                        <div class="action-buttons">
-                            <button class="small-btn edit-btn">Sửa</button>
-                            <button class="small-btn delete-btn">Xóa</button>
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td>3</td>
-                    <td>/test/com</td>
-                    <td><a href="#" class="profile-link">Xem</a></td>
-                    <td>
-                        <div class="action-buttons">
-                            <button class="small-btn edit-btn">Sửa</button>
-                            <button class="small-btn delete-btn">Xóa</button>
-                        </div>
-                    </td>
-                </tr>
+                @foreach ($challenges as $challenge)
+                    <tr>
+                        <td>{{ $challenge->id }}</td>
+                        <td>{{ $challenge->file_path }}</td>
+                        <td><a href="#" class="profile-link">Xem</a></td>
+                        <td>
+                            <div class="action-buttons">
+                                <form action="{{ route('teacher.delete.challenge', $challenge->id) }}" method="POST" class="delete-form">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="small-btn delete-btn" onclick="return confirm('Bạn có chắc chắn muốn xóa?')">
+                                        Xóa
+                                    </button>
+                                </form>
+                            </div>
+                        </td>
+                    </tr>
+                @endforeach
             </tbody>
         </table>
     </section>

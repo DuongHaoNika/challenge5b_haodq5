@@ -10,7 +10,8 @@ class Challenge extends Model
     protected $fillable = [
         'challenge_hint',
         'file_path',
-        'file_content'
+        'file_content',
+        'teacher_id'
     ];
 
     use HasFactory;

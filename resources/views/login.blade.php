@@ -35,9 +35,9 @@
                 </div>
                 
                 <div class="form-options">
-                    <label class="remember-me">
+                    {{-- <label class="remember-me">
                         <input type="checkbox" name="remember"> Ghi nhớ đăng nhập
-                    </label>
+                    </label> --}}
                     <a href="#" class="forgot-password">Quên mật khẩu?</a>
                 </div>
                 

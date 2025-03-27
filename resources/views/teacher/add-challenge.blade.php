@@ -1,28 +1,23 @@
 <x-layout>
     <header class="header">
-        <h1>Add Assignment</h1>
+        <h1>Add Chalenge</h1>
     </header>
 
     <!-- Edit Form -->
     <section class="edit-form">
-        <form>
+        <form method="POST" action="{{ route('teacher.store.challenge') }}" enctype="multipart/form-data">
+            @csrf
+            
             <div class="form-group">
-                <label for="title"><strong>Tiêu đề:</strong></label>
-                <input type="text" id="title" class="form-control" value="Thi giữa kỳ">
+                <label for="title"><strong>Hint</strong></label>
+                <input name="challenge_hint" type="text" id="title" class="form-control" required>
             </div>
             
             <div class="form-group">
-                <label for="description"><strong>Goi y</strong></label>
-                <textarea id="description" class="form-control" rows="3">20% điểm thành phần</textarea>
-            </div>
-            
-            <div class="divider"></div>
-            
-            <div class="form-group">
-                <label><strong>File:</strong></label>
+                <label><strong>File đính kèm:</strong></label>
                 <div class="file-upload">
                     <label class="file-upload-btn">
-                        <input type="file" style="display: none;">
+                        <input type="file" name="file" id="file-input" style="display: none;">
                         <span class="file-upload-text">Choose File</span>
                         <span class="file-upload-filename">No file chosen</span>
                     </label>
@@ -31,9 +26,17 @@
             
             <div class="form-actions">
                 <button type="submit" class="submit-btn">
-                    Add
+                    Tạo challenge
                 </button>
             </div>
         </form>
+        
+        <script>
+        // Hiển thị tên file khi chọn
+        document.getElementById('file-input').addEventListener('change', function(e) {
+            const fileName = e.target.files[0] ? e.target.files[0].name : 'No file chosen';
+            document.querySelector('.file-upload-filename').textContent = fileName;
+        });
+        </script>
     </section>
 </x-layout>
