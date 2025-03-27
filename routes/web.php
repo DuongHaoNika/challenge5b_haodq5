@@ -7,7 +7,7 @@ use App\Http\Middleware\CheckAuthenticated;
 use App\Http\Middleware\TeacherOnly;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', [UserController::class, 'index']);
+Route::get('/', [UserController::class, 'index'])->middleware(CheckAuthenticated::class);
 
 Route::get('/profile/{id}', [UserController::class, 'profile'])->middleware(CheckAuthenticated::class)->name('profile');
 Route::get('/edit-profile/{id}', [UserController::class, 'get_edit_profile'])->middleware(CheckAuthenticated::class)->name('profile.edit');
