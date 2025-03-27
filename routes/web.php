@@ -4,7 +4,6 @@ use App\Http\Controllers\StudentController;
 use App\Http\Controllers\TeacherController;
 use App\Http\Controllers\UserController;
 use App\Http\Middleware\CheckAuthenticated;
-use App\Http\Middleware\TeacherOnly;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [UserController::class, 'index'])->middleware(CheckAuthenticated::class);
@@ -32,6 +31,7 @@ Route::middleware(['teacher_auth'])->prefix('manage')->group(function () {
     // Quản lý challenge
     Route::get('/challenges', [TeacherController::class, 'view_challenges'])->name('teacher.challenges');
     Route::get('/add-challenge', [TeacherController::class, 'add_challenge'])->name('teacher.add.challenge');
+    Route::get('/view-challenge-attempt/{challengeId}', [TeacherController::class, 'viewChallengeAttempts'])->name('teacher.view.attempt');
     Route::post('/add-challenge', [TeacherController::class, 'storeChallenge'])->name('teacher.store.challenge');
     Route::delete('/delete-challenge/{id}', [TeacherController::class, 'delete_challenge'])->name('teacher.delete.challenge');
     
@@ -40,10 +40,12 @@ Route::middleware(['teacher_auth'])->prefix('manage')->group(function () {
 });
 
 Route::middleware(['student_auth'])->prefix('student')->group(function () {
-    Route::get('/student/assignments', [StudentController::class, 'view_assignments']);
-    Route::get('/student/challenges', [StudentController::class, 'view_challenges']);
-    Route::get('/student/submission/submit', [StudentController::class, 'view_submit_assignment']);
-    Route::get('/student/challenge/submit', [StudentController::class, 'view_submit_challenge']);
+    Route::get('/assignments', [StudentController::class, 'view_assignments'])->name('student.assignment');
+    Route::get('/challenges', [StudentController::class, 'view_challenges'])->name('student.challenge');
+    Route::get('/submission/submit/{id}', [StudentController::class, 'view_submit_assignment'])->name('submit.assignment');
+    Route::post('/submission/submit/{id}', [StudentController::class, 'submit_assignment'])->name('submit.assignment');
+    Route::get('/challenge/submit/{id}', [StudentController::class, 'view_submit_challenge'])->name('submit.challenge');
+    Route::post('/challenge/submit/{assignment_id}', action: [StudentController::class, 'submitChallenge'])->name('submit.challenge');
 });
 
 Route::get('/login', [UserController::class, 'view_login'])->name('login');

@@ -19,7 +19,7 @@
                     <td>{{ $index + 1 }}</td>
                     <td>{{ $submission->student->full_name }}</td>
                     <td>{{ $submission->student->email }}</td>
-                    <td>{{ $submission->submitted_at->format('d/m/Y H:i') }}</td>
+                    <td>{{ $submission->created_at->format('d/m/Y H:i') }}</td>
                     <td>
                         <a href="{{ Storage::url($submission->file_path) }}" target="_blank">
                             Xem file

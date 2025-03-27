@@ -42,7 +42,7 @@
                                  
                             </div>
                         </td>
-                        <td><a href="{{ route('teacher.view.assignment', $assignment) }}" class="view-submissions">Xem bài làm</a></td>
+                        <td><a href="{{ route('teacher.view.assignment', $assignment) }}" class="view-submissions">Xem</a></td>
                     </tr>
                     @endforeach
                 </tbody>

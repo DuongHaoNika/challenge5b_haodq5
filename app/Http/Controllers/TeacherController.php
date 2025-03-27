@@ -6,6 +6,7 @@ use App\Models\Assignment;
 use App\Models\Submission;
 use App\Models\User;
 use App\Models\Challenge;
+use App\Models\ChallengeAttempt;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -172,7 +173,7 @@ class TeacherController extends Controller
             $query->select('id', 'full_name', 'email', 'phone'); // Chỉ lấy các trường cần thiết
         }])
         ->where('assignment_id', $assignment->id)
-        ->orderBy('submitted_at', 'desc')
+        ->orderBy('created_at', 'desc')
         ->get();
 
         return view('teacher.view-submissions', compact('assignment', 'submissions'));
@@ -236,6 +237,23 @@ class TeacherController extends Controller
         ]);
 
         return redirect()->route('teacher.challenges')->with('success', 'Thêm challenge thành công!');
+    }
+
+    public function viewChallengeAttempts($challengeId)
+    {
+        // Lấy thông tin challenge
+        $challenge = Challenge::findOrFail($challengeId);
+        
+        // Lấy danh sách submissions kèm thông tin sinh viên
+        $submissions = ChallengeAttempt::with('student')
+            ->where('challenge_id', $challengeId)
+            ->orderBy('created_at', 'desc')
+            ->get();
+        
+        return view('teacher.view-challenge-attempt', [
+            'challenge' => $challenge,
+            'submissions' => $submissions
+        ]);
     }
 
     public function view_edit_student(Request $request) {

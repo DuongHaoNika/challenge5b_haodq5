@@ -53,7 +53,6 @@ class UserController extends Controller
         $validated = $request->validate([
             'content' => 'required|string|max:1000',
         ]);
-        echo $request;
 
         // Tìm comment
         $comment = Message::findOrFail($id);

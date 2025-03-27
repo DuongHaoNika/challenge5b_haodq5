@@ -24,7 +24,7 @@
                     <tr>
                         <td>{{ $challenge->id }}</td>
                         <td>{{ $challenge->file_path }}</td>
-                        <td><a href="#" class="profile-link">Xem</a></td>
+                        <td><a href="{{ route('teacher.view.attempt', $challenge->id) }}" class="profile-link">Xem</a></td>
                         <td>
                             <div class="action-buttons">
                                 <form action="{{ route('teacher.delete.challenge', $challenge->id) }}" method="POST" class="delete-form">

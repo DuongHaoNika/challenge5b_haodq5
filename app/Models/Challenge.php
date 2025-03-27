@@ -14,5 +14,9 @@ class Challenge extends Model
         'teacher_id'
     ];
 
+    public function attempts()
+    {
+        return $this->hasMany(ChallengeAttempt::class);
+    }
     use HasFactory;
 }

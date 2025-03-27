@@ -16,7 +16,7 @@ return new class extends Migration
             $table->foreignId('challenge_id')->constrained('challenges')->onDelete('cascade');
             $table->foreignId('student_id')->constrained('users')->onDelete('cascade');
             $table->string('submitted_answer');
-            $table->timestamp('submitted_at')->useCurrent(); 
+            $table->timestamps(); 
             $table->boolean('is_correct')->nullable();  
         });
     }

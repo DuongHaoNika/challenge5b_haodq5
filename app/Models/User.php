@@ -23,5 +23,10 @@ class User extends Model implements Authenticatable
         'remember_token',
     ];
 
+    public function submissions()
+    {
+        return $this->hasMany(Submission::class, 'student_id');
+    }
+
     use HasFactory;
 }

@@ -13,6 +13,17 @@ class Message extends Model
         'content'
     ];
 
+    public function student()
+    {
+        return $this->belongsTo(User::class, 'student_id');
+    }
+
+
+    public function assignment()
+    {
+        return $this->belongsTo(Assignment::class);
+    }
+
     public function sender()
     {
         return $this->belongsTo(User::class, 'sender_id');

@@ -2,15 +2,18 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Submission extends Model
+class ChallengeAttempt extends Model
 {
     protected $fillable = [
-        'file_path',
-        'assignment_id',
+        'submitted_answer',
+        'challenge_id',
         'student_id',
-        'submitted_at',
+        'is_correct',
+        'updated_at',
+        'created_at'
     ];
 
     public function student()
@@ -18,4 +21,5 @@ class Submission extends Model
         return $this->belongsTo(User::class, 'student_id');
     }
 
+    use HasFactory;
 }
