@@ -13,7 +13,7 @@
     <!-- Assignments Table -->
     <section class="assignments-table">
         @if($assignments->isEmpty())
-            <div class="alert alert-info">Bạn chưa có challenge nào</div>
+            <div class="alert alert-info">Bạn chưa có assignment nào</div>
         @else
             <table>
                 <thead>

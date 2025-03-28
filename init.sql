@@ -90,3 +90,20 @@ INSERT INTO messages (sender_id, receiver_id, content) VALUES
 (5, 10, 'Hello, Student Five!'),
 (10, 5, 'Hello, Teacher Five!');
 
+-- Insert assignments
+INSERT INTO assignments (teacher_id, title, description, file_path, created_at, deadline) VALUES
+(1, 'Laravel Basics Assignment', 'Create a simple Laravel CRUD application for a blog system.', 'assignments/laravel_basics.pdf', NOW(), DATE_ADD(NOW(), INTERVAL 7 DAY)),
+(2, 'Database Design Project', 'Design a database schema for an e-commerce platform.', 'assignments/database_design.pdf', NOW(), DATE_ADD(NOW(), INTERVAL 10 DAY)),
+(1, 'JavaScript Fundamentals', 'Complete the JavaScript exercises covering functions, arrays and objects.', 'assignments/javascript_fundamentals.pdf', NOW(), DATE_ADD(NOW(), INTERVAL 5 DAY)),
+(2, 'CSS Layout Challenge', 'Create responsive layouts using Flexbox and CSS Grid.', 'assignments/css_layout.pdf', NOW(), DATE_ADD(NOW(), INTERVAL 3 DAY)),
+(2, 'Final Project Proposal', 'Submit your proposal for the final project including scope and technologies.', 'assignments/final_project.pdf', NOW(), DATE_ADD(NOW(), INTERVAL 14 DAY)),
+(1, 'API Development Task', 'Build a RESTful API with authentication using Laravel Sanctum.', 'assignments/api_development.pdf', NOW(), DATE_ADD(NOW(), INTERVAL 12 DAY));
+
+-- Insert challenges
+INSERT INTO challenges (teacher_id, challenge_hint, file_path, file_content, created_at) VALUES
+(1, 'Look for the flag in the source code comments', 'challenges/web_security_1.zip', 'This file contains a simple web application with vulnerabilities', NOW()),
+(2, 'The password is hashed with MD5', 'challenges/crypto_challenge.pdf', 'A document containing encrypted messages to decode', NOW()),
+(1, 'Check the network requests in developer tools', 'challenges/api_challenge.json', 'API endpoint with hidden endpoints to discover', NOW()),
+(2, 'The solution involves a recursive function', 'challenges/algorithm_task.js', 'JavaScript file with an incomplete algorithm to complete', NOW()),
+(2, 'Inspect the cookies and local storage', 'challenges/web_challenge.html', 'HTML file with hidden flags in different storage locations', NOW()),
+(1, 'The answer is in the EXIF data', 'challenges/image_analysis.jpg', 'Image file containing hidden metadata', NOW());
